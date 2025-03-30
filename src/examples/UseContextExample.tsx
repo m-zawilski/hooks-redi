@@ -50,6 +50,7 @@ const GrandparentComponent = () => {
     <div
       style={{
         backgroundColor: theme === "LIGHT" ? "#fff" : "#333",
+        padding: "20px",
       }}
     >
       <ParentComponent />

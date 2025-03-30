@@ -1,5 +1,8 @@
-// TODO: Implement a custom hook useItemList that accepts the initial list of items
+// Implement a custom hook useItemList that accepts the initial list of items
 // Hook should return the current list of items and a function that allows adding an additional item
+
+// TODO
+const useItemList = () => {};
 
 const CustomHookExercise = () => {
   const { items, addItem } = useItemList();
@@ -13,8 +16,20 @@ const CustomHookExercise = () => {
         ))}
       </ul>
       <div>
-        <input type="text" onChange={/* TODO */} placeholder="Add new item" />
-        <button onClick={/* TODO */}>Add Item</button>
+        <input
+          type="text"
+          onChange={() => {
+            /* TODO */
+          }}
+          placeholder="Add new item"
+        />
+        <button
+          onClick={() => {
+            /* TODO */
+          }}
+        >
+          Add Item
+        </button>
       </div>
     </div>
   );

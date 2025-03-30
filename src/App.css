@@ -1,5 +1,9 @@
-.column {
+.row {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.page {
+  padding: 20px;
 }

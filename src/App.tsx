@@ -1,25 +1,61 @@
+import { JSX, useState } from "react";
 import "./app.css";
 import CustomHookExample from "./examples/CustomHookExample";
 import UseCallbackExample from "./examples/UseCallbackExample";
 import UseContextExample from "./examples/UseContextExample";
 import UseMemoExample from "./examples/UseMemoExample";
 import UseRefExample from "./examples/UseRefExample";
+import CustomHookExercise from "./exercises/CustomHookExercise";
 import UseEffectExercise from "./exercises/UseEffectExercise";
 import UseIdExercise from "./exercises/UseIdExercise";
 import UseRefExercise from "./exercises/UseRefExercise";
 
+type Page =
+  | "useEffectExercise"
+  | "useContext"
+  | "useRef"
+  | "useMemo"
+  | "useCallback"
+  | "useRefExercise"
+  | "useIdExercise"
+  | "customHook"
+  | "customHookExercise";
+
 function App() {
+  const [currentComponent, setCurrentComponent] =
+    useState<Page>("useEffectExercise");
+
+  const componentMap: Record<Page, JSX.Element> = {
+    useEffectExercise: <UseEffectExercise />,
+    useContext: <UseContextExample />,
+    useRef: <UseRefExample />,
+    useRefExercise: <UseRefExercise />,
+    useMemo: <UseMemoExample />,
+    useCallback: <UseCallbackExample />,
+    useIdExercise: <UseIdExercise />,
+    customHook: <CustomHookExample />,
+    customHookExercise: <CustomHookExercise />,
+  };
+
   return (
-    <div className="column">
-      <UseEffectExercise />
-      <UseContextExample />
-      <UseRefExample />
-      <UseMemoExample />
-      <UseCallbackExample />
-      <UseRefExercise />
-      <UseIdExercise />
-      <CustomHookExample />
-      {/* <CustomHookExercise /> */}
+    <div>
+      <div className="row">
+        {(Object.keys(componentMap) as Page[]).map((componentName) => (
+          <button
+            key={componentName}
+            onClick={() => setCurrentComponent(componentName)}
+            style={{
+              color: componentName.includes("Exercise")
+                ? "darkred"
+                : "darkblue",
+            }}
+          >
+            {componentName}
+          </button>
+        ))}
+      </div>
+
+      <div className="page">{componentMap[currentComponent]}</div>
     </div>
   );
 }

@@ -8,7 +8,8 @@ interface Joke {
 const UseEffectExercise = () => {
   // 1. Implement the counter
   // 2. Fetch a random joke when the count reaches a multiple of 5
-  // 3. Add an useEffect cleanup in case you leave the component before the fetch succeeds
+  // [EXTRA] 3. Add an useEffect cleanup in case you leave the component before the fetch succeeds
+  // [EXTRA] 4. Add a loading state
 
   const [count, setCount] = useState(0);
   const [joke, setJoke] = useState<Joke | null>(null);

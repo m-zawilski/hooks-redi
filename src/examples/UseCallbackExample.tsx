@@ -6,7 +6,15 @@ const UseCallbackElement = memo(function UseCallbackElement({
 }: {
   onClick: () => void;
 }) {
-  console.log("Rendered button");
+  console.log("Button render starts");
+
+  let count = 0;
+
+  // mock long rendering time
+  for (let i = 0; i < 10 ** 9; i++) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    count++;
+  }
 
   return <button onClick={onClick}>Increment</button>;
 });

@@ -2,7 +2,12 @@
 // Hook should return the current list of items and a function that allows adding an additional item
 
 // TODO
-const useItemList = () => {};
+const useItemList = () => {
+  return {
+    items: ["eaw", "ewaea"],
+    addItem: () => {},
+  };
+};
 
 const CustomHookExercise = () => {
   const { items, addItem } = useItemList();

@@ -24,7 +24,7 @@ const useCounter = (initialValue = 0) => {
 };
 
 const CustomHookExample = () => {
-  const { count, increment, decrement, reset } = useCounter(0);
+  const { count, increment, decrement, reset } = useCounter(100);
 
   return (
     <div>

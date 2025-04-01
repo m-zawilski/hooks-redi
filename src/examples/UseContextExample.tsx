@@ -61,18 +61,18 @@ const GrandparentComponent = () => {
 };
 
 const UseContextExample = () => {
-  const [theme, setTheme] = useState<Theme>("LIGHT");
+  const [currentTheme, setCurrentTheme] = useState<Theme>("LIGHT");
 
   return (
     <>
       <button
         onClick={() =>
-          setTheme((theme) => (theme === "DARK" ? "LIGHT" : "DARK"))
+          setCurrentTheme((theme) => (theme === "DARK" ? "LIGHT" : "DARK"))
         }
       >
         Toggle theme
       </button>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={currentTheme}>
         <GrandparentComponent />
       </ThemeContext.Provider>
     </>

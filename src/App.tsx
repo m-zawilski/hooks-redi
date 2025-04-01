@@ -6,13 +6,15 @@ import UseContextExample from "./examples/UseContextExample";
 import UseMemoExample from "./examples/UseMemoExample";
 import UseRefExample from "./examples/UseRefExample";
 import CustomHookExercise from "./exercises/CustomHookExercise";
+import UseContextExercise from "./exercises/UseContextExercise";
 import UseEffectExercise from "./exercises/UseEffectExercise";
 import UseIdExercise from "./exercises/UseIdExercise";
 import UseRefExercise from "./exercises/UseRefExercise";
 
 type Page =
   | "useEffectExercise"
-  | "useContext"
+  | "useContextExample"
+  | "useContextExercise"
   | "useRef"
   | "useMemo"
   | "useCallback"
@@ -27,7 +29,8 @@ function App() {
 
   const componentMap: Record<Page, JSX.Element> = {
     useEffectExercise: <UseEffectExercise />,
-    useContext: <UseContextExample />,
+    useContextExample: <UseContextExample />,
+    useContextExercise: <UseContextExercise />,
     useRef: <UseRefExample />,
     useRefExercise: <UseRefExercise />,
     useMemo: <UseMemoExample />,

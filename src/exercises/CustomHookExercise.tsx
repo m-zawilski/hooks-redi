@@ -4,7 +4,7 @@
 // TODO
 const useItemList = () => {
   return {
-    items: ["eaw", "ewaea"],
+    items: [],
     addItem: () => {},
   };
 };

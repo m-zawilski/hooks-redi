@@ -1,11 +1,15 @@
+import { useId } from "react";
+
 function UseIdElement({ label }: { label: string }) {
   // Add HTML id to the input and connect the label and the input
   // Inpect the result in the browser DevTools
 
+  const id = useId();
+
   return (
     <div>
-      <label htmlFor="to_be_changed">{label}</label>
-      <input id="to_be_changed" type="text" />
+      <label htmlFor={id}>{label}</label>
+      <input id={id} type="text" />
     </div>
   );
 }

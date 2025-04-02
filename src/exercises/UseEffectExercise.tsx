@@ -11,20 +11,31 @@ const UseEffectExercise = () => {
   // [EXTRA] 3. Add an useEffect cleanup in case you leave the component before the fetch succeeds
   // [EXTRA] 4. Add a loading state
 
+  const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
   const [joke, setJoke] = useState<Joke | null>(null);
 
   // fetch("https://official-joke-api.appspot.com/jokes/random")
   useEffect(() => {
-    // TODO
+    if (count % 5 === 0 && count !== 0) {
+      setLoading(true);
+      fetch("https://official-joke-api.appspot.com/jokes/random")
+        .then((response)=>(response.json()))
+        .then(data=> {
+          setJoke(data)
+          setLoading(false)
+        })
+
+    }
+
   }, [count]);
 
   const increment = () => {
-    // TODO
+    setCount(count + 1);
   };
 
   const decrement = () => {
-    // TODO
+    setCount(count - 1);
   };
 
   return (
@@ -32,7 +43,8 @@ const UseEffectExercise = () => {
       <h1>Counter: {count}</h1>
       <button onClick={increment}>Increment</button>
       <button onClick={decrement}>Decrement</button>
-      {joke && (
+      {loading && <p>Loading...</p>}
+      {joke && !loading && (
         <div>
           <h2>Random Joke</h2>
           <p>{joke.setup}</p>

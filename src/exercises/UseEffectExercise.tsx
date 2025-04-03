@@ -13,18 +13,49 @@ const UseEffectExercise = () => {
 
   const [count, setCount] = useState(0);
   const [joke, setJoke] = useState<Joke | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // fetch("https://official-joke-api.appspot.com/jokes/random")
   useEffect(() => {
-    // TODO
+    let isMounted = true;
+
+    const getJoke = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("https://official-joke-api.appspot.com/jokes/random");
+        if (!response.ok) {
+          setLoading(false);
+          throw new Error(`Response status ${response.status}`);
+        }
+
+        const json = await response.json();
+        if(isMounted) {
+          setJoke(json);
+          setLoading(false);
+        }
+      
+      }   
+      catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    };
+
+    if (count % 5 === 0 && count !== 0) {
+      getJoke();
+    }
+
+    return () => {
+      isMounted = false;
+    }
   }, [count]);
 
   const increment = () => {
-    // TODO
+    setCount((prev) => prev + 1);
   };
 
   const decrement = () => {
-    // TODO
+    setCount((prev) => prev - 1);
   };
 
   return (
@@ -32,7 +63,8 @@ const UseEffectExercise = () => {
       <h1>Counter: {count}</h1>
       <button onClick={increment}>Increment</button>
       <button onClick={decrement}>Decrement</button>
-      {joke && (
+      {loading ? <div>Loading....</div> :
+      joke && (
         <div>
           <h2>Random Joke</h2>
           <p>{joke.setup}</p>

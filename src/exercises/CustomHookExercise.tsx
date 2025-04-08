@@ -1,11 +1,29 @@
+import { useState } from "react";
+
 // Implement a custom hook useItemList that accepts the initial list of items
 // Hook should return the current list of items and a function that allows adding an additional item
 
 // TODO
-const useItemList = () => {};
+type Item = string;
+type ItemList = Item[];
+
+const useItemList = (initialList: ItemList) => {
+  const [items, setItems] = useState<ItemList>(initialList);
+  
+  const addItem = (item: Item) => {
+    setItems(prevItems => [...prevItems, item]);
+  };
+
+  return {
+    items,
+    addItem
+  }
+};
 
 const CustomHookExercise = () => {
-  const { items, addItem } = useItemList();
+  const initialList: string[] = [];
+  const { items, addItem } = useItemList(initialList);
+  const [ input, setInput ]  = useState('');
 
   return (
     <div>
@@ -17,15 +35,17 @@ const CustomHookExercise = () => {
       </ul>
       <div>
         <input
+          value={input}
           type="text"
-          onChange={() => {
-            /* TODO */
+          onChange={(e) => {
+            setInput(e.target.value)
           }}
           placeholder="Add new item"
         />
         <button
           onClick={() => {
-            /* TODO */
+            setInput('');
+            addItem(input);
           }}
         >
           Add Item
